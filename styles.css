@@ -1,3 +1,13 @@
-body {
-    background-color: antiquewhite;
+h1{
+    display: flex;
+    justify-content: center;
+}
+#table{
+    height: calc(100vh - 37.6px);
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, clamp(50px, 20%, 100px));
+    grid-template-rows: repeat(3, clamp(50px, 20%, 100px));
+    gap: 10px;
+    justify-content: center;
 }
