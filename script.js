@@ -54,32 +54,40 @@ for(let i = 0; i < 9; i++)
             )
                 {   
                     winner();
-                    if( button[i].innerHTML === '')
-                        button[i].removeEventListener();
                 }
     })}
 
 function winner () {
     
-    const div = document.getElementById('button');
+    const dialog = document.getElementById('dialog');
     const winText = document.createElement('h2');
 
     if(playerOne.showMoves() === playerTwo.showMoves())
-        winText.innerHTML = `${playerTwo.symbol} won!`;
+        {winText.innerHTML = `${playerTwo.symbol} won!`;
+        playerOne.removeMoves();
+        playerTwo.removeMoves();}
         
+    else if(playerOne.showMoves() + playerTwo.showMoves() === 9)
+        {winText.innerHTML = `It's a draw`;
+        playerOne.removeMoves();
+        playerTwo.removeMoves();}
+
     else
         winText.innerHTML = `${playerOne.symbol} won!`;
-    
-    div.appendChild(winText);
+
+    dialog.appendChild(winText);
     const reset = document.createElement('button');
-    div.appendChild(reset);
+    dialog.appendChild(reset);
     reset.innerHTML = 'Play again?';
+
+    dialog.showModal();
     reset.addEventListener('click', () => {
     reset.remove();
     winText.remove();
     for(let i = 0; i < 9; i++)
-    button[i].innerHTML = '';
+    {button[i].innerHTML = '';
     playerOne.removeMoves();
-    playerTwo.removeMoves();
+    playerTwo.removeMoves();}
+    dialog.close();
     })
 }
